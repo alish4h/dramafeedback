@@ -20,11 +20,13 @@
         "postinstall": "npm run copy-fonts"
     },
     "dependencies": {
+        "cordova-ios": "^4.5.4",
         "framework7": "^2.0.7",
         "framework7-icons": "^0.8.9",
         "framework7-vue": "^2.0.7",
         "material-design-icons": "^3.0.1",
-        "vue": "^2.5.2"
+        "vue": "^2.5.2",
+        "cordova-android": "^7.0.0"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",
@@ -104,5 +106,11 @@
         "> 1%",
         "last 2 versions",
         "not ie <= 8"
-    ]
+    ],
+    "cordova": {
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
 }
