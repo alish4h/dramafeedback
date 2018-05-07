@@ -20,13 +20,14 @@
         "postinstall": "npm run copy-fonts"
     },
     "dependencies": {
+        "cordova-android": "^7.0.0",
         "cordova-ios": "^4.5.4",
+        "cordova-plugin-googleplus": "^5.3.0",
         "framework7": "^2.0.7",
         "framework7-icons": "^0.8.9",
         "framework7-vue": "^2.0.7",
         "material-design-icons": "^3.0.1",
-        "vue": "^2.5.2",
-        "cordova-android": "^7.0.0"
+        "vue": "^2.5.2"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",
@@ -111,6 +112,11 @@
         "platforms": [
             "android",
             "ios"
-        ]
+        ],
+        "plugins": {
+            "cordova-plugin-googleplus": {
+                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919100318693-29g2egreho7vut5qdd0mcvsokbv3th38"
+            }
+        }
     }
 }

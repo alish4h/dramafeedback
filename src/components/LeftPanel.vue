@@ -3,7 +3,7 @@
     <f7-navbar title="Menu"></f7-navbar>
     <!-- force page background color to white if on iOS -->
     <f7-page :style="pageStyle">
-      <f7-block-title>Links</f7-block-title>
+      <f7-block-title>Menu</f7-block-title>
       <f7-list>
         <f7-list-item
           link="/"

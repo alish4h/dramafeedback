@@ -1,0 +1,16 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-googleplus": {
+      "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919100318693-29g2egreho7vut5qdd0mcvsokbv3th38",
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    }
+  },
+  "dependent_plugins": {}
+}
