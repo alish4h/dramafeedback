@@ -23,7 +23,7 @@
     <!-- POST SIGN IN VIEW -->
     <f7-list v-show="authenticated" center>
       <f7-list-button link= "/students/" >Students</f7-list-button>
-      <f7-list-button @click='fsignIn'>Performance</f7-list-button>
+      <f7-list-button>Performance</f7-list-button>
       <f7-list-button>Settings</f7-list-button>
       <f7-list-button large>Start Session</f7-list-button>
     </f7-list>
