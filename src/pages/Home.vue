@@ -1,6 +1,6 @@
 <template>
   <f7-page>
-    <f7-navbar sliding>
+    <f7-navbar v-show="!authenticated" sliding>
       <f7-nav-left>
         <f7-link icon-f7="icon-bars" panel-open="left"></f7-link>
       </f7-nav-left>
@@ -8,9 +8,17 @@
         Home
       </f7-nav-title>
     </f7-navbar>
+
+    <!-- AFTER LOGIN NAVBAR -->
+    <f7-navbar v-show="authenticated" back-link="Logout" sliding>
+    <f7-nav-title>
+        Logged In
+      </f7-nav-title>
+    </f7-navbar>
     <f7-block inner>
       <f7-block-title>{{ title }}</f7-block-title>
     </f7-block>
+
     <!-- SIGNIN FOR GOOGLE LOGIN  -->
     <f7-list v-show="!authenticated">
       <f7-list-button @click='signIn'>Sign In</f7-list-button>
@@ -20,12 +28,13 @@
       <p>O-ft97WleWf3mMQEZ7TW7Cpo</p>
     </f7-list>
 
+
     <!-- POST SIGN IN VIEW -->
-    <f7-list v-show="authenticated" center>
-      <f7-list-button link= "/students/" >Students</f7-list-button>
-      <f7-list-button>Performance</f7-list-button>
-      <f7-list-button>Settings</f7-list-button>
-      <f7-list-button large>Start Session</f7-list-button>
+    <f7-list v-show="authenticated">
+      <f7-list-button @click="$f7router.navigate('/students/')">Students</f7-list-button>
+      <f7-list-button @click="$f7router.navigate('/performance/')">Performance</f7-list-button>
+      <f7-list-button @click="$f7router.navigate('/settings/')">Settings</f7-list-button>
+      <f7-list-button @click="$f7router.navigate('/session/')">Start Session</f7-list-button>
     </f7-list>
   </f7-page>
 </template>
@@ -52,6 +61,7 @@ export default {
     },
     function (obj) {
       // do something useful instead of alerting
+      alert(JSON.stringify(obj))
       if(JSON.stringify(obj)) {
         this.authenticated = true
       }

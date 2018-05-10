@@ -1,9 +1,11 @@
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './pages/Services';
 import Another from './pages/Another';
 import NotFoundPage from './pages/not-found.vue';
 import Students from './pages/Students';
+import Session from './pages/Session';
+import Performance from './pages/Performance';
+import Settings from './pages/Settings';
 
 export default [
   {
@@ -15,16 +17,24 @@ export default [
     component: About
   },
   {
-    path: '/services/',
-    component: Services
-  },
-  {
     path: '/about/another/',
     component: Another
   },
   {
     path: '/students/',
     component: Students
+  },
+  {
+    path: '/session/',
+    component: Session
+  },
+  {
+    path: '/performance/',
+    component: Performance
+  },
+  {
+    path: '/settings/',
+    component: Settings
   },
   {
     path: '(.*)',

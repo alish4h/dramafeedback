@@ -1,11 +1,8 @@
 <template>
-  <f7-page name="services">
-    <f7-navbar sliding>
-      <f7-nav-left>
-        <f7-link icon-f7="icon-bars" panel-open="left"></f7-link>
-      </f7-nav-left>
-      <f7-nav-title>
-        Services
+  <f7-page name="Settings">
+    <f7-navbar back-link="Back" sliding>
+    <f7-nav-title>
+        Settings
       </f7-nav-title>
     </f7-navbar>
     <!-- Scrollable page content-->
@@ -16,15 +13,18 @@
       soluta totam maxime autem minima accusamus eos suscipit dignissimos
       corporis modi voluptatum fugiat!
     </f7-block>
+    <f7-list>
+      <f7-list-item link="/Settings/another/" title="Another Page"></f7-list-item>
+    </f7-list>
   </f7-page>
 </template>
 
 <script>
 export default {
-  name: 'Services',
+  name: 'Settings',
   data() {
     return {
-      title: 'Services Page'
+      title: 'Settings Page'
     };
   }
 };

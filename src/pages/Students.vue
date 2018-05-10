@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="Students">
+  <f7-page name="students">
     <f7-navbar back-link="Back" sliding>
       <f7-nav-title>
         Students
@@ -8,11 +8,40 @@
     <!-- Scrollable page content-->
     <f7-block-title>{{ title }}</f7-block-title>
     <f7-block inner>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Distinctio est aliquam officiis quaerat placeat, cum explicabo magni
-      soluta totam maxime autem minima accusamus eos suscipit dignissimos
-      corporis modi voluptatum fugiat!
+    <f7-list>
+    <f7-list-item>
+        <f7-label>Name</f7-label>
+        <f7-input type="text" :value="student.name" @input="student.name = $event.target.value" placeholder="Name" clear-button></f7-input>
+    </f7-list-item>
+    <f7-list-item>
+        <f7-label>Age</f7-label>
+        <f7-input type="number" :value="student.age" @input="student.age = $event.target.value" placeholder="Age" clear-button></f7-input>
+    </f7-list-item>
+    <f7-list-item>
+        <f7-label>Gender</f7-label>
+        <f7-input type="select" :value="student.gender" @input="student.gender = $event.target.value" placeholder="Gender" clear-button>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </f7-input>
+    </f7-list-item>
+    <f7-list-item>
+        <f7-label>School</f7-label>
+        <f7-input type="select" :value="student.school" @input="student.school = $event.target.value" placeholder="School" clear-button>
+            <option value="London">London</option>
+            <option value="Birmingham">Birmingham</option>
+            <option value="Manchester">Manchester </option>
+        </f7-input>
+    </f7-list-item>
+    <f7-list-item>
+        <f7-label>Start Date</f7-label>
+        <f7-input type="date" :value="student.startdate" @input="student.startdate = $event.target.value" placeholder="Start date" clear-button>
+        </f7-input>
+    </f7-list-item>
+    <br>
+    <f7-button fill-ios='true' big-ios='true'>Add Student</f7-button>
+    </f7-list>
     </f7-block>
+    <p>{{student}}</p>
   </f7-page>
 </template>
 
@@ -21,8 +50,20 @@ export default {
   name: 'Students',
   data() {
     return {
-      title: 'Students Page'
+      title: 'Students Page',
+      student: {
+        name: null,
+        age: null,
+        gender: null,
+        school: null,
+        startdate: null
+      }
     };
+  },
+  methods: {
+    addStudent () {
+      this.student 
+    }
   }
 };
 </script>
