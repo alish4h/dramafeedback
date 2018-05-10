@@ -1,9 +1,9 @@
 <template>
   <f7-page>
     <f7-navbar v-show="!authenticated" sliding>
-      <f7-nav-left>
-        <f7-link icon-f7="icon-bars" panel-open="left"></f7-link>
-      </f7-nav-left>
+      <f7-nav-right v-show="authenticated">
+        <f7-link icon-f7="logout_fill" @click="logout">Logout</f7-link>
+      </f7-nav-right>
       <f7-nav-title>
         Home
       </f7-nav-title>
@@ -74,6 +74,14 @@ export default {
     async signIn () {
       this.user = await this.oAuth()
       this.authenticated = true
+      this.title = 'Hi welcome ' + this.user.displayName
+    },
+    logout () {
+      this.authenticated = false
+      window.plugins.googleplus.logout(
+      function (msg) {
+        alert(msg); // do something useful instead of alerting
+        })
     }
 
   }

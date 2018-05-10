@@ -1,7 +1,7 @@
+<!--
 <template>
   <f7-panel left :reveal="isiOS" :effect="panelEffect">
     <f7-navbar title="Menu"></f7-navbar>
-    <!-- force page background color to white if on iOS -->
     <f7-page :style="pageStyle">
       <f7-block-title>Menu</f7-block-title>
       <f7-list>
@@ -13,8 +13,9 @@
           reload-all
         />
         <f7-list-item
-          link="/about/"
-          title="About"
+          @click="logout"
+          link="/"
+          title="Logout"
           link-view="#main-view"
           panel-close
           reload-all
@@ -23,7 +24,6 @@
     </f7-page>
   </f7-panel>
 </template>
-
 <script>
 export default {
   name: 'LeftPanel',
@@ -40,10 +40,17 @@ export default {
     panelEffect() {
       return this.isiOS ? 'reveal' : 'cover';
     }
+  },
+  methods: {
+    logout () {
+      window.plugins.googleplus.logout(
+      function (msg) {
+        alert(msg); // do something useful instead of alerting
+        })
+    }
   }
 };
 </script>
-
 <style scoped>
 .panel-left .page {
   margin-top: 44px;
@@ -55,3 +62,4 @@ export default {
   }
 }
 </style>
+-->
