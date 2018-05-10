@@ -1,8 +1,8 @@
 {
-    "name": "helloworld",
+    "name": "dramafeedback",
     "version": "1.0.0",
     "description": "A blank PhoneGap template using Vue.js and Framework7",
-    "author": "tommy-carlos williams <tommy@devgeeks.org>",
+    "author": "",
     "scripts": {
         "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
         "start": "npm run dev",
