@@ -12,7 +12,9 @@ export default new Vuex.Store({
   state: {
     token: null,
     refreshToken: null,
-    sheetId: '13MhaHGGizfcp8BAYj8wUCcqJ3Wt9xkprj9Im8necf8k'
+    sheetId: '13MhaHGGizfcp8BAYj8wUCcqJ3Wt9xkprj9Im8necf8k',
+    name: null,
+    date: null
   },
   mutations: {
     setToken (state, token) {
@@ -20,6 +22,12 @@ export default new Vuex.Store({
     },
     setRefreshToken (state, rtoken) {
       state.refreshToken = rtoken
+    },
+    setName (state, name) {
+      state.name = name
+    },
+    setDate(state, date) {
+      state.date = date
     }
   },
   actions: {
@@ -28,6 +36,12 @@ export default new Vuex.Store({
     },
     setRefreshToken ({commit}, rtoken) {
       commit('setRefreshToken', rtoken)
+    },
+    setName ({commit}, name) {
+      commit('setName', name)
+    },
+    setDate({commit}, date) {
+      commit('setDate', date)
     }
   }
 })

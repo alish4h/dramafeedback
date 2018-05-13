@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import store from '@/store/store'
+
 export default {
   name: 'after',
   data() {
@@ -42,13 +44,22 @@ export default {
         sum: 2,
       },
       counter:0,
-      questions: ['How was being in the group today with other people?','Are you feeling the same or different?']
+      questions: ['How was being in the group today with other people?','Are you feeling the same or different?'],
+      responseObj: {
+        name: store.state.name,
+        date: Date.now,
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null
+      }
     };
   },
   methods:{
     next (){
       if(this.counter<1){
       this.counter++;
+      console.log(responseObj)
       }
     },
     previous (){

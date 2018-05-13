@@ -47,7 +47,7 @@
 <script>
 import axios from 'axios'
 import store from '@/store/store'
-axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BVJT5EiQqaiIsjd_deRm5s4g-TYtehnQ7YDPD26__W-e90UDaOl1HLDf3vuESE3ULE1iTVDxf6UyjwxyiebbZadH8-hToSfl_KY1asIgs-zZCj5pna9X9xAe`;
+axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BSWh7CaIQK_XSDiXJyclwpJ0zG3gSR_WK3VOgXAhvKcru8SlZQAm09r9e5LyJgDQ1p8Gjq6H4nUaTo1Xgm_DwfCbWyj9J12FFRasbTPs63iI-F9zqh-RkoPo`;
 
 export default {
   name: 'Students',
@@ -85,8 +85,10 @@ export default {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/Students!A2:D:append?valueInputOption=RAW`
       axios.post(url, data)
       .then(response => {
-        console.log(response)
-        alert(response)
+        alert(error)
+      })
+      .catch(error => {
+        alert(error)
       })
     }
   }

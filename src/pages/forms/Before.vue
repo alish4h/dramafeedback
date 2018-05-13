@@ -5,7 +5,7 @@
     <br>
     <f7-block id="page">
     <f7-block>
-      <h1>{{questions[counter]}}</h1>
+      <h1>{{questions[q]}}</h1>
     </f7-block>
     <f7-row>
       <img @click="happy" src="@/assets/happy.png" width="80" height="80">
@@ -19,12 +19,13 @@
     type="range"
     min="0"
     :max="max"
-    :value="node.sum"
+    :value="rangeValue"
     v-on:input="onChg($event)">
   
-<f7-row>{{node.sum}}</f7-row>
+<f7-row>{{rangeValue}}</f7-row>
 <f7-row>
-    <f7-button  @click="previous" >Previous</f7-button>
+    <f7-button @click="previous" >Previous</f7-button>
+    <f7-button v-show="showDone" @click="done">Done!</f7-button>
     <f7-button @click="next" >Next</f7-button>
 </f7-row>
     </f7-block>
@@ -32,49 +33,88 @@
 </template>
 
 <script>
+import store from '@/store/store'
 export default {
   name: 'before',
   data() {
     return {
       title: 'Before Form',
+      showDone: false,
       max: 4,
-      node: {
-        sum: 2,
+      rangeValue: 2,
+      responseObj: {
+        name: null,
+        date: null,
+        answers: []
       },
-     
-      counter:0,
-      questions: ['How has your week been?','How are things out of school?','How are things in school?']
+      counter:-1,
+      q: 0,
+      questions: ['How has your week been?','How are things out of school?','How are things in school?', 'How are you today?'],
     };
   },
+  created () {
+    this.responseObj.name = store.state.name
+    this.responseObj.date = store.state.date
+  },
+  watch: {
+    counter () {
+      switch (this.counter) {
+        case 0:
+          this.responseObj.answers[0] = (this.rangeValue)
+          break
+        case 1:
+          this.responseObj.answers[1] = (this.rangeValue)
+          break
+        case 2:
+          this.responseObj.answers[2] = (this.rangeValue)
+          break
+        case 3:
+          this.responseObj.answers[3] = (this.rangeValue)
+          break
+      }
+    }
+  },
   methods:{
+    done () {
+      //submit the response
+      console.log(this.responseObj)
+      
+    },
     next (){
-      if(this.counter<2){
+      if(this.counter<4){
        this.counter++;
-       
+       this.q++
+       if(this.counter > 3) {
+         this.showDone = true
+         this.questions.push("You're Done!")
+       } else {
+         this.showDone = false
+       }
       }
     },
     previous (){
       if(this.counter>0){
       this.counter--;
+      this.q--
       }
     },
     happy (){
-      this.node.sum=0;
+      this.rangeValue=0;
     },
     excited (){
-      this.node.sum=1;
+      this.rangeValue=1;
     },
     amused (){
-      this.node.sum=2;
+      this.rangeValue=2;
     },
     indifferent (){
-      this.node.sum=3;
+      this.rangeValue=3;
     },
     angry (){
-      this.node.sum=4;
+      this.rangeValue=4;
     },
     onChg (e) {
-      this.node.sum = e.target.value;
+      this.rangeValue = e.target.value;
     }
   }
 };

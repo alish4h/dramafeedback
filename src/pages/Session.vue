@@ -6,16 +6,23 @@
       </f7-nav-title>
     </f7-navbar>
     <!-- Student Select -->
-    <f7-list>
+    <p>Student name {{studentName}}</p>
+    <p>Session date {{sessionDate}}</p>
+    <f7-list v-show="showStudentSelect">
     <f7-list-item>
       <f7-label>Select Student</f7-label>
-    <f7-input type="select" placeholder="Students">
+    <f7-input type="select" :value="studentName" placeholder="Students" @input="studentName = $event.target.value">
         <option
-        v-for="student in students"
-        :key="student"
-        :value="student"
-        >{{student}}</option>
+        v-for="s in students"
+        :key="s"
+        :value="s"
+        >{{s}} </option>
     </f7-input>
+    </f7-list-item>
+        <f7-list-item>
+        <f7-label>Session Date</f7-label>
+        <f7-input type="date" :value="sessionDate" @input="sessionDate = $event.target.value" placeholder="Session Date" clear-button>
+        </f7-input>
     </f7-list-item>
     </f7-list>
     <f7-list v-show="!showQuestions">
@@ -57,20 +64,30 @@ export default {
   data() {
     return {
       title: 'Session Page',
+      sessionDate: null,
+      studentName: 'studentName',
+      showStudentSelect: true,
       showQuestions: false,
       showBefore: false,
       showAfter: false,
-      students: []
+      students: [],
+      response: []
     }
   },
   methods: {
       beforeForm () {
+        this.showStudentSelect = false
         this.showBefore = true
         this.showQuestions = true
+        this.$store.dispatch('setName', this.studentName)
+        this.$store.dispatch('setDate', this.sessionDate)
       },
       afterForm () {
+        this.showStudentSelect = false
         this.showAfter = true
         this.showQuestions = true
+        this.$store.dispatch('setName', this.studentName)
+        this.$store.dispatch('setDate', this.sessionDate)
       }
   }
 };
