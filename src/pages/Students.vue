@@ -47,7 +47,7 @@
 <script>
 import axios from 'axios'
 import store from '@/store/store'
-axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BSWh7CaIQK_XSDiXJyclwpJ0zG3gSR_WK3VOgXAhvKcru8SlZQAm09r9e5LyJgDQ1p8Gjq6H4nUaTo1Xgm_DwfCbWyj9J12FFRasbTPs63iI-F9zqh-RkoPo`;
+axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BaaFgtO2b9Oa9vOzgVDcBIIL1BDshOWU54qFaYpRCTg71xZEUE7KtW0fII05o6Czdwk4cthDNfb_WdLcziw8qF8Y3kg6El9TFHw4G0FIj1NX-mQyabyiHa77`;
 
 export default {
   name: 'Students',

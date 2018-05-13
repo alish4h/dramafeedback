@@ -21,7 +21,6 @@
     :max="max"
     :value="rangeValue"
     v-on:input="onChg($event)">
-  
 <f7-row>{{rangeValue}}</f7-row>
 <f7-row>
     <f7-button @click="reset" >Reset</f7-button>
@@ -34,6 +33,8 @@
 
 <script>
 import store from '@/store/store'
+import axios from 'axios'
+
 export default {
   name: 'before',
   data() {
@@ -49,9 +50,11 @@ export default {
       },
       counter:0,
       questions: ['How has your week been?','How are things out of school?','How are things in school?', 'How are you today?'],
+      students: []
     };
   },
   created () {
+    alert('created')
     this.responseObj.name = store.state.name
     this.responseObj.date = store.state.date
   },
@@ -59,6 +62,25 @@ export default {
     done () {
       //submit the response
       console.log(this.responseObj)
+<<<<<<< HEAD
+=======
+      // const customRange = `${}`
+      const data = {
+        "range": "Students!A2:D",
+        "majorDimension": "ROWS",
+        "values": [
+          [this.responseObj, this.student.age, this.student.gender, this.student.location, this.student.startdate]
+        ],
+      }
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/Responses!A2:D:append?valueInputOption=RAW`
+      axios.post(url, data)
+      .then(response => {
+        alert(response)
+      })
+      .catch(error => {
+        alert(error)
+      })
+>>>>>>> Writing resopnses to google sheets
     },
     next (){
       if(this.counter<4){

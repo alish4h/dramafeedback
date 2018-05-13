@@ -60,6 +60,27 @@ export default {
       }
       this.students = studentArray
     })
+    // Check from response sheet
+    const url2 = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/Responses!B1:B?majorDimension=ROWS`
+    axios.get(url2)
+    .then(response => {
+      var nameArray = []
+      var dateArray = []
+      var newArray = []
+      var parentArray = response.data.values
+      for(var i = 0; i < parentArray.length; i++){
+          for(var j = 0; j < parentArray[i].length; j++){
+            newArray.push(parentArray[i][j])
+          }
+      }
+      for(var k=0; k < newArray.length; k+=8) {
+        nameArray.push(newArray[k])
+      }
+      this.existingStudents = nameArray
+    })
+    .catch(error => {
+      console.log(error)
+    })
   },
   data() {
     return {
@@ -71,11 +92,21 @@ export default {
       showBefore: false,
       showAfter: false,
       students: [],
-      response: []
+      response: [],
+      existingStudents: []
     }
   },
   methods: {
+    checkNameExist () {
+      console.log(this.existingStudents)
+      for (var name in this.existingStudents) {
+        if (store.state.name === this.existingStudents[name]) {
+          console.log('exists', store.state.name)
+        }
+      }
+    },
       beforeForm () {
+        this.checkNameExist()
         this.showStudentSelect = false
         this.showBefore = true
         this.showQuestions = true
