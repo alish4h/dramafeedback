@@ -16,7 +16,8 @@
       </f7-nav-title>
     </f7-navbar>
     <f7-block inner>
-      <f7-block-title>{{ title }}</f7-block-title>
+      <f7-block-title v-show="!authenticated">{{ title }}</f7-block-title>
+      <f7-block-title v-show="authenticated">{{welcome}}</f7-block-title>
     </f7-block>
 
     <!-- SIGNIN FOR GOOGLE LOGIN  -->
@@ -36,9 +37,11 @@
       <f7-list-button @click="$f7router.navigate('/settings/')">Settings</f7-list-button>
       <f7-list-button @click="$f7router.navigate('/session/')">Start Session</f7-list-button>
     </f7-list>
+
   </f7-page>
 </template>
 <script>
+import store from '@/store/store'
 export default {
   
   name: 'Home',
@@ -46,7 +49,9 @@ export default {
     return {
       title: 'Dramatic Feed',
       authenticated: false,
-      user: 'something'
+      welcome: '',
+      user: null,
+      token: null
     };
   },
   methods: {
@@ -57,7 +62,7 @@ export default {
       return new Promise((resolve, reject) => {
         window.plugins.googleplus.login(
         {
-          'scopes': 'https://www.googleapis.com/auth/spreadsheets', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+          'scopes': 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
           'webClientId': '', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
           'offline': true, // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
         },
@@ -74,13 +79,25 @@ export default {
     async signIn () {
       this.user = await this.oAuth()
       this.authenticated = true
-      this.title = 'Hi welcome ' + this.user.displayName
+      this.welcome = "Welcome " + this.user.displayName
+      // this.$store.dispatch('setToken', this.user.accessToken)
+      // this.$store.dispatch('setRefreshToken', this.user.refreshToken)
+      oauth2Client.setCredentials({
+          access_token: this.user.accessToken,
+          refresh_token: this.user.refreshToken
+      });
     },
     logout () {
       this.authenticated = false
       window.plugins.googleplus.logout(
       function (msg) {
-        alert(msg); // do something useful instead of alerting
+        // alert("You've been logged out!")
+        navigator.notification.alert(
+            "You've been logged out",  // message
+            null,         // callback
+            'Logout',            // title
+            'OK'                  // buttonName
+        )
         })
     }
 

@@ -20,15 +20,26 @@
         "postinstall": "npm run copy-fonts"
     },
     "dependencies": {
+        "async": "^2.6.0",
+        "axios": "^0.18.0",
         "cordova-android": "^7.0.0",
         "cordova-ios": "^4.5.4",
+        "cordova-plugin-chrome-apps-common": "^1.0.7",
+        "cordova-plugin-chrome-apps-storage": "^1.0.4",
+        "cordova-plugin-dialogs": "^2.0.1",
         "cordova-plugin-googleplus": "^5.3.0",
+        "es6-promise-plugin": "git+https://github.com/vstirbu/PromisesPlugin.git",
         "framework7": "^2.0.7",
         "framework7-icons": "^0.8.9",
         "framework7-vue": "^2.0.7",
+        "google-spreadsheet": "^2.0.4",
         "googleapis": "^27.0.0",
         "material-design-icons": "^3.0.1",
-        "vue": "^2.5.2"
+        "nl-afas-cordova-plugin-securelocalstorage": "^0.1.18",
+        "vue": "^2.5.2",
+        "vuex": "^3.0.1",
+        "vuex-persistedstate": "^2.5.2",
+        "vuex-router-sync": "^5.0.0"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",
@@ -117,7 +128,10 @@
         "plugins": {
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919100318693-29g2egreho7vut5qdd0mcvsokbv3th38"
-            }
+            },
+            "cordova-plugin-dialogs": {},
+            "nl-afas-cordova-plugin-securelocalstorage": {},
+            "cordova-plugin-chrome-apps-storage": {}
         }
     }
 }

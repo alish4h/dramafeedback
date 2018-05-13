@@ -21,16 +21,25 @@ import Routes from './routes.js';
 // Import App Component
 import App from './app';
 
+// Import axios
+import axios from 'axios'
+
+import { sync } from 'vuex-router-sync'
+
+import store from '@/store/store'
+
+// sync(store, Routes)
+
 // Set up some useful globals
 window.isMaterial = !Framework7.device.ios;
 window.isiOS = Framework7.device.ios;
-
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue, Framework7);
 
 // Init App
 const baseApp = new Vue({
   el: '#app',
+  store: store,
   template: '<app/>',
   // Init Framework7 by passing parameters here
   framework7: {

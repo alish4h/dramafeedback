@@ -38,31 +38,56 @@
         </f7-input>
     </f7-list-item>
     <br>
-    <f7-button fill-ios='true' big-ios='true'>Add Student</f7-button>
+    <f7-button fill-ios='true' big-ios='true' @click="addStudent">Add Student</f7-button>
     </f7-list>
     </f7-block>
-    <p>{{student}}</p>
   </f7-page>
 </template>
 
 <script>
+import axios from 'axios'
+import store from '@/store/store'
+axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BVJT5EiQqaiIsjd_deRm5s4g-TYtehnQ7YDPD26__W-e90UDaOl1HLDf3vuESE3ULE1iTVDxf6UyjwxyiebbZadH8-hToSfl_KY1asIgs-zZCj5pna9X9xAe`;
+
 export default {
   name: 'Students',
+  created () {
+    this.token = store.state.token
+  },
   data() {
     return {
       title: 'Students Page',
+      showAddForm: false,
       student: {
         name: null,
         age: null,
         gender: null,
         school: null,
         startdate: null
-      }
+      },
+      students: [],
+      token: null,
+      result: {},
+      spreadsheetId: store.state.sheetId
     };
   },
   methods: {
     addStudent () {
-      this.student 
+      // add a student to 'students' sheet
+      alert('Adding student')
+      const data = {
+        "range": "Students!A2:D",
+        "majorDimension": "ROWS",
+        "values": [
+          [this.student.name, this.student.age, this.student.gender, this.student.location, this.student.startdate]
+        ],
+      }
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/Students!A2:D:append?valueInputOption=RAW`
+      axios.post(url, data)
+      .then(response => {
+        console.log(response)
+        alert(response)
+      })
     }
   }
 };

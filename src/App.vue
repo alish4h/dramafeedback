@@ -5,9 +5,6 @@
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>
 
-    <!-- Left Panel / View -->
-    <left-panel-view />
-
     <!-- Main View -->
     <f7-view id="main-view" url="/" main></f7-view>
 
@@ -16,13 +13,9 @@
 </template>
 
 <script>
-import LeftPanel from './components/LeftPanel';
 
 export default {
   name: 'App',
-  components: {
-    'left-panel-view': LeftPanel
-  },
   methods: {
     handleBackButton() {
       // NOTE: The back button will behave differently depending on circumstance

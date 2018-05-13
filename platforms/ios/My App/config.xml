@@ -24,6 +24,15 @@
         <param name="onload" value="true" />
     </feature>
     <access origin="https://accounts.google.com/*" />
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="SecureLocalStorage">
+        <param name="ios-package" value="SecureLocalStorage" />
+    </feature>
+    <feature name="ChromeStorage">
+        <param name="ios-package" value="ChromeStorage" />
+    </feature>
     <name>My App</name>
     <description>        A basic Vue.js + Framework7 template for PhoneGap.    </description>
     <author email="tommy@devgeeks.org" href="http://phonegap.com">        Adobe PhoneGap Team    </author>

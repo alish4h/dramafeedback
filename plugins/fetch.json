@@ -8,5 +8,45 @@
     "variables": {
       "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919100318693-29g2egreho7vut5qdd0mcvsokbv3th38"
     }
+  },
+  "cordova-plugin-dialogs": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-dialogs@^2.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "nl-afas-cordova-plugin-securelocalstorage": {
+    "source": {
+      "type": "registry",
+      "id": "nl-afas-cordova-plugin-securelocalstorage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "es6-promise-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/vstirbu/PromisesPlugin.git"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-chrome-apps-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-chrome-apps-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-chrome-apps-common": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-chrome-apps-common@1"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }

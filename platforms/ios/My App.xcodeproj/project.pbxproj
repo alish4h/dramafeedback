@@ -31,6 +31,12 @@
 		756FE9164E3F4AE3AAA5DD46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6537E75206D04FA79C5DE70B /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		19F83BD0BFF7429FA8F6E3AB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E31393F992C41D7B10D1BAD /* libz.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2E1B84A217A04BCFBEC27D02 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4718C5E983B46B8B37813C9 /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A13A65C98D0F4E50B1A3BD8B /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443E19472DD43D0A2DEF2CA /* CDVNotification.m */; };
+		511CB4BD02AA407A82692D95 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9367FAEE25AD466698937C66 /* CDVNotification.bundle */; };
+		3A7E0BF38B36436CB3BC5108 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E608687F391F4B8985BE95B0 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2A4A6BAD52BE4095AA4DA7D4 /* SecureLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A5024C8A3E4A63AFD6D56B /* SecureLocalStorage.m */; };
+		F109179B589545AC857C418C /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836F257F3614395B304F289 /* KeychainItemWrapper.m */; };
+		7C2FF647D17944CBB7B6002F /* ChromeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0742A562CE7A4F49A7B5F81D /* ChromeStorage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +93,16 @@
 		6537E75206D04FA79C5DE70B /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		4E31393F992C41D7B10D1BAD /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		D4718C5E983B46B8B37813C9 /* libz.dylib */ = {isa = PBXFileReference; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = compiled.mach-o.dylib; explicitFileType = undefined; includeInIndex = 0; };
+		0443E19472DD43D0A2DEF2CA /* CDVNotification.m */ = {isa = PBXFileReference; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		05AB791583A34282A8F74134 /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		9367FAEE25AD466698937C66 /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
+		E608687F391F4B8985BE95B0 /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		07A5024C8A3E4A63AFD6D56B /* SecureLocalStorage.m */ = {isa = PBXFileReference; name = "SecureLocalStorage.m"; path = "nl-afas-cordova-plugin-securelocalstorage/SecureLocalStorage.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		1836F257F3614395B304F289 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; name = "KeychainItemWrapper.m"; path = "nl-afas-cordova-plugin-securelocalstorage/KeychainItemWrapper.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		ED17103DDFC247F3AF2CF464 /* SecureLocalStorage.h */ = {isa = PBXFileReference; name = "SecureLocalStorage.h"; path = "nl-afas-cordova-plugin-securelocalstorage/SecureLocalStorage.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		6A722093E5254E2B86ED14CA /* KeychainItemWrapper.h */ = {isa = PBXFileReference; name = "KeychainItemWrapper.h"; path = "nl-afas-cordova-plugin-securelocalstorage/KeychainItemWrapper.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		0742A562CE7A4F49A7B5F81D /* ChromeStorage.m */ = {isa = PBXFileReference; name = "ChromeStorage.m"; path = "cordova-plugin-chrome-apps-storage/ChromeStorage.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		BAABEE9841B64808B9CA053E /* ChromeStorage.h */ = {isa = PBXFileReference; name = "ChromeStorage.h"; path = "cordova-plugin-chrome-apps-storage/ChromeStorage.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +124,7 @@
 				756FE9164E3F4AE3AAA5DD46 /* SystemConfiguration.framework in Frameworks */,
 				19F83BD0BFF7429FA8F6E3AB /* libz.tbd in Frameworks */,
 				2E1B84A217A04BCFBEC27D02 /* libz.dylib in Frameworks */,
+				3A7E0BF38B36436CB3BC5108 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +188,7 @@
 				8D1107310486CEB800E47090 /* My App-Info.plist */,
 				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
 				D92E3177B78D4A368E0D6090 /* My App.entitlements */,
+				9367FAEE25AD466698937C66 /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = "My App/Resources";
@@ -192,6 +210,7 @@
 				6537E75206D04FA79C5DE70B /* SystemConfiguration.framework */,
 				4E31393F992C41D7B10D1BAD /* libz.tbd */,
 				D4718C5E983B46B8B37813C9 /* libz.dylib */,
+				E608687F391F4B8985BE95B0 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,6 +238,14 @@
 			children = (
 				13B89721C4444C5B99396F25 /* GooglePlus.m */,
 				83C5DC353DAB49DAA9362A22 /* GooglePlus.h */,
+				0443E19472DD43D0A2DEF2CA /* CDVNotification.m */,
+				05AB791583A34282A8F74134 /* CDVNotification.h */,
+				07A5024C8A3E4A63AFD6D56B /* SecureLocalStorage.m */,
+				1836F257F3614395B304F289 /* KeychainItemWrapper.m */,
+				ED17103DDFC247F3AF2CF464 /* SecureLocalStorage.h */,
+				6A722093E5254E2B86ED14CA /* KeychainItemWrapper.h */,
+				0742A562CE7A4F49A7B5F81D /* ChromeStorage.m */,
+				BAABEE9841B64808B9CA053E /* ChromeStorage.h */,
 			);
 			name = Plugins;
 			path = "My App/Plugins";
@@ -301,6 +328,7 @@
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
 				5BD20B5C339B450D964EAF81 /* My App.entitlements in Resources */,
+				511CB4BD02AA407A82692D95 /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +361,10 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				2F8FE438B4694B6F9D3138FD /* GooglePlus.m in Sources */,
+				A13A65C98D0F4E50B1A3BD8B /* CDVNotification.m in Sources */,
+				2A4A6BAD52BE4095AA4DA7D4 /* SecureLocalStorage.m in Sources */,
+				F109179B589545AC857C418C /* KeychainItemWrapper.m in Sources */,
+				7C2FF647D17944CBB7B6002F /* ChromeStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

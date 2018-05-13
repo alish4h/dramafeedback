@@ -20,6 +20,14 @@ export default {
     return {
       title: 'Performance Page'
     };
+  },
+  methods: {
+    showProgress (student) {
+    },
+    selectStudent() {
+      // selected student
+      this.showProgress()
+    }
   }
 };
 </script>

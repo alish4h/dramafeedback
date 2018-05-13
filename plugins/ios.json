@@ -10,7 +10,23 @@
     "cordova-plugin-googleplus": {
       "REVERSED_CLIENT_ID": "com.googleusercontent.apps.919100318693-29g2egreho7vut5qdd0mcvsokbv3th38",
       "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "nl-afas-cordova-plugin-securelocalstorage": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "cordova-plugin-chrome-apps-storage": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "cordova-plugin-chrome-apps-common": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    }
+  }
 }

@@ -1,0 +1,61 @@
+{
+  "_from": "nl-afas-cordova-plugin-securelocalstorage",
+  "_id": "nl-afas-cordova-plugin-securelocalstorage@0.1.18",
+  "_inBundle": false,
+  "_integrity": "sha1-jxN+Qe5PoI7R+V7t9JFVcSXT1V0=",
+  "_location": "/nl-afas-cordova-plugin-securelocalstorage",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "nl-afas-cordova-plugin-securelocalstorage",
+    "name": "nl-afas-cordova-plugin-securelocalstorage",
+    "escapedName": "nl-afas-cordova-plugin-securelocalstorage",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/nl-afas-cordova-plugin-securelocalstorage/-/nl-afas-cordova-plugin-securelocalstorage-0.1.18.tgz",
+  "_shasum": "8f137e41ee4fa08ed1f95eedf491557125d3d55d",
+  "_spec": "nl-afas-cordova-plugin-securelocalstorage",
+  "_where": "/Users/ali/dramafeedback",
+  "author": {
+    "name": "Dick Verweij"
+  },
+  "bugs": {
+    "url": "https://github.com/dickverweij/nl-afas-cordova-plugin-securelocalstorage/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "nl-afas-cordova-plugin-securelocalstorage",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Secure localStorage. This plugin will store local data encrypted using the IOS keychain or the Android keystore. Use it to store temporary sensitive data which has to survive an app exit/shutdown.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/dickverweij/nl-afas-cordova-plugin-securelocalstorage#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "nl-afas-cordova-plugin-securelocalstorage",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dickverweij/nl-afas-cordova-plugin-securelocalstorage.git"
+  },
+  "version": "0.1.18"
+}

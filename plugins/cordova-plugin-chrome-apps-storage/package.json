@@ -1,0 +1,61 @@
+{
+  "_from": "cordova-plugin-chrome-apps-storage",
+  "_id": "cordova-plugin-chrome-apps-storage@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-+DseFuVLd0ujdfb/U3j9qCmxYf0=",
+  "_location": "/cordova-plugin-chrome-apps-storage",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-chrome-apps-storage",
+    "name": "cordova-plugin-chrome-apps-storage",
+    "escapedName": "cordova-plugin-chrome-apps-storage",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-chrome-apps-storage/-/cordova-plugin-chrome-apps-storage-1.0.4.tgz",
+  "_shasum": "f83b1e16e54b774ba375f6ff5378fda829b161fd",
+  "_spec": "cordova-plugin-chrome-apps-storage",
+  "_where": "/Users/ali/dramafeedback",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-storage/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-chrome-apps-storage",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "This plugin provides allows apps to use local storage.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-storage",
+  "keywords": [
+    "chrome",
+    "storage",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "BSD",
+  "name": "cordova-plugin-chrome-apps-storage",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-storage.git"
+  },
+  "version": "1.0.4"
+}
