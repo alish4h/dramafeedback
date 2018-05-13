@@ -62,8 +62,6 @@ export default {
     done () {
       //submit the response
       console.log(this.responseObj)
-<<<<<<< HEAD
-=======
       // const customRange = `${}`
       const data = {
         "range": "Students!A2:D",
@@ -80,7 +78,6 @@ export default {
       .catch(error => {
         alert(error)
       })
->>>>>>> Writing resopnses to google sheets
     },
     next (){
       if(this.counter<4){
