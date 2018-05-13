@@ -5,7 +5,7 @@
     <br>
     <f7-block id="page">
     <f7-block>
-      <h1>{{questions[q]}}</h1>
+      <h1>{{questions[counter]}}</h1>
     </f7-block>
     <f7-row>
       <img @click="happy" src="@/assets/happy.png" width="80" height="80">
@@ -24,7 +24,7 @@
   
 <f7-row>{{rangeValue}}</f7-row>
 <f7-row>
-    <f7-button @click="previous" >Previous</f7-button>
+    <f7-button @click="reset" >Reset</f7-button>
     <f7-button v-show="showDone" @click="done">Done!</f7-button>
     <f7-button @click="next" >Next</f7-button>
 </f7-row>
@@ -47,8 +47,7 @@ export default {
         date: null,
         answers: []
       },
-      counter:-1,
-      q: 0,
+      counter:0,
       questions: ['How has your week been?','How are things out of school?','How are things in school?', 'How are you today?'],
     };
   },
@@ -56,34 +55,15 @@ export default {
     this.responseObj.name = store.state.name
     this.responseObj.date = store.state.date
   },
-  watch: {
-    counter () {
-      switch (this.counter) {
-        case 0:
-          this.responseObj.answers[0] = (this.rangeValue)
-          break
-        case 1:
-          this.responseObj.answers[1] = (this.rangeValue)
-          break
-        case 2:
-          this.responseObj.answers[2] = (this.rangeValue)
-          break
-        case 3:
-          this.responseObj.answers[3] = (this.rangeValue)
-          break
-      }
-    }
-  },
   methods:{
     done () {
       //submit the response
       console.log(this.responseObj)
-      
     },
     next (){
       if(this.counter<4){
+        this.responseObj.answers[this.counter] = this.rangeValue;
        this.counter++;
-       this.q++
        if(this.counter > 3) {
          this.showDone = true
          this.questions.push("You're Done!")
@@ -92,12 +72,10 @@ export default {
        }
       }
     },
-    previous (){
-      if(this.counter>0){
-      this.counter--;
-      this.q--
-      }
-    },
+    reset (){
+      this.counter=0;
+      this.showDone=false;
+      },
     happy (){
       this.rangeValue=0;
     },
