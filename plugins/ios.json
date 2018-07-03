@@ -19,6 +19,9 @@
     },
     "cordova-plugin-chrome-apps-storage": {
       "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "cordova-plugin-progress": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
     }
   },
   "dependent_plugins": {

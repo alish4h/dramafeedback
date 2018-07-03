@@ -23,6 +23,10 @@
             {
               "xml": "<feature name=\"SecureLocalStorage\"><param name=\"ios-package\" value=\"SecureLocalStorage\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Progress\"><param name=\"ios-package\" value=\"Progress\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ],
           "/widget": [
@@ -63,6 +67,9 @@
       "PACKAGE_NAME": "com.phonegap.myapp"
     },
     "cordova-plugin-chrome-apps-storage": {
+      "PACKAGE_NAME": "com.phonegap.myapp"
+    },
+    "cordova-plugin-progress": {
       "PACKAGE_NAME": "com.phonegap.myapp"
     }
   },
@@ -128,6 +135,14 @@
       "clobbers": [
         "chrome.storage"
       ]
+    },
+    {
+      "id": "cordova-plugin-progress.Progress",
+      "file": "plugins/cordova-plugin-progress/www/progress.js",
+      "pluginId": "cordova-plugin-progress",
+      "clobbers": [
+        "progress"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -136,6 +151,7 @@
     "es6-promise-plugin": "4.2.2",
     "nl-afas-cordova-plugin-securelocalstorage": "0.1.18",
     "cordova-plugin-chrome-apps-common": "1.0.7",
-    "cordova-plugin-chrome-apps-storage": "1.0.4"
+    "cordova-plugin-chrome-apps-storage": "1.0.4",
+    "cordova-plugin-progress": "0.3.0"
   }
 }

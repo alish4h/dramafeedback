@@ -5,6 +5,9 @@
     <br>
     <f7-block id="page">
     <f7-block>
+      <h2>Hi, {{responseObj.name}}</h2>
+    </f7-block>
+    <f7-block>
       <h1>{{questions[counter]}}</h1>
     </f7-block>
     <f7-row>
@@ -28,6 +31,9 @@
     <f7-button @click="next" >Next</f7-button>
 </f7-row>
     </f7-block>
+    <f7-block>
+      <h5>{{error}}</h5>
+    </f7-block>
   </f7-page>
 </template>
 
@@ -50,34 +56,89 @@ export default {
       },
       counter:0,
       questions: ['How has your week been?','How are things out of school?','How are things in school?', 'How are you today?'],
-      students: []
+      students: [],
+      error: null,
+      Responsefields: ['Name','Date','Before: How has your week been?','Before: How are things out of school?','Before: How are things in school?','Before: How are you today?', 'After: How was being in the group with other people', 'After: Are you now the same or different?']
     };
   },
   created () {
-    alert('created')
     this.responseObj.name = store.state.name
     this.responseObj.date = store.state.date
   },
-  methods:{
+  methods: {
     done () {
       //submit the response
+      progress.show("Connecting to Google Sheets...");
+            setTimeout(function () {
+            progress.update("Saving Responses");
+      }, 1500)
       console.log(this.responseObj)
-      // const customRange = `${}`
+      console.log('Name exists', store.state.nameExist)
+      if(store.state.nameExist) {
+      const customRange = `Responses!B${store.state.pos}`
       const data = {
-        "range": "Students!A2:D",
-        "majorDimension": "ROWS",
+        "range": customRange,
+        "majorDimension": "COLUMNS",
         "values": [
-          [this.responseObj, this.student.age, this.student.gender, this.student.location, this.student.startdate]
+          [this.responseObj.name, this.responseObj.date, this.responseObj.answers[0], this.responseObj.answers[1], this.responseObj.answers[2], this.responseObj.answers[3], null, null]
         ],
       }
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/Responses!A2:D:append?valueInputOption=RAW`
-      axios.post(url, data)
+      console.log(data)
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/${customRange}?valueInputOption=RAW`
+      axios.put(url, data)
       .then(response => {
-        alert(response)
+        setTimeout(function () {
+            progress.hide();
+        }, 2000);
+          navigator.notification.alert(
+            "Responses Saved",  // message
+            null,         // callback
+            'Success',            // title
+            'OK'                  // buttonName
+        )
+        console.log(response)
       })
       .catch(error => {
-        alert(error)
+        navigator.notification.alert(
+          error,  // message
+          null,         // callback
+          'Error',            // title
+          'OK'                  // buttonName
+        )
       })
+      } else {
+      const customRange = `Responses!B1`
+      const data = {
+        "range": customRange,
+        "majorDimension": "COLUMNS",
+        "values": [
+          this.Responsefields,
+          [this.responseObj.name, this.responseObj.date, this.responseObj.answers[0], this.responseObj.answers[1], this.responseObj.answers[2], this.responseObj.answers[3], null, null]
+        ],
+      }
+      console.log(data)
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/${customRange}:append?valueInputOption=RAW`
+      axios.post(url, data)
+      .then(response => {
+        setTimeout(function () {
+            progress.hide();
+        }, 2000);
+          navigator.notification.alert(
+            "Responses Saved",  // message
+            null,         // callback
+            'Success',            // title
+            'OK'                  // buttonName
+        )
+      })
+      .catch(error => {
+        navigator.notification.alert(
+          error,  // message
+          null,         // callback
+          'Error',            // title
+          'OK'                  // buttonName
+        )
+      })
+      }
     },
     next (){
       if(this.counter<4){
@@ -117,6 +178,12 @@ export default {
 };
 </script>
 <style scoped>
+h5 {
+  color: red;
+}
+h2 {
+  font-size: 30px;
+}
 h1{
   font-size: 40px;
 }

@@ -10,8 +10,13 @@
     <p>Session date {{sessionDate}}</p>
     <f7-list v-show="showStudentSelect">
     <f7-list-item>
+        <f7-label>Session Date</f7-label>
+        <f7-input type="date" :value="sessionDate" @input="sessionDate = $event.target.value" placeholder="Session Date" required clear-button>
+        </f7-input>
+    </f7-list-item>
+    <f7-list-item>
       <f7-label>Select Student</f7-label>
-    <f7-input type="select" :value="studentName" placeholder="Students" @input="studentName = $event.target.value">
+    <f7-input type="select" :value="studentName" placeholder="Students" @input="studentName = $event.target.value" required>
         <option
         v-for="s in students"
         :key="s"
@@ -19,20 +24,18 @@
         >{{s}} </option>
     </f7-input>
     </f7-list-item>
-        <f7-list-item>
-        <f7-label>Session Date</f7-label>
-        <f7-input type="date" :value="sessionDate" @input="sessionDate = $event.target.value" placeholder="Session Date" clear-button>
-        </f7-input>
-    </f7-list-item>
     </f7-list>
     <f7-list v-show="!showQuestions">
       <f7-list-button @click="beforeForm">Before</f7-list-button>
       <f7-list-button @click="afterForm">After</f7-list-button>
+      <f7-block>
+        <h5>{{error}}</h5>
+      </f7-block>
     </f7-list>
 
     <!-- Show Questions-->
-    <after-form v-show="showAfter"></after-form>
-    <before-form v-show="showBefore"></before-form>
+    <after-form v-if="showAfter"></after-form>
+    <before-form v-if="showBefore"></before-form>
   </f7-page>
 </template>
 
@@ -41,7 +44,6 @@ import AfterForm from './forms/After'
 import BeforeForm from './forms/Before'
 import store from '@/store/store'
 import axios from 'axios'
-// axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BQgoZGbA59RHGx0eRlVnSlYSb64MV8DY0rAL2mFMgAYLUqnCSjyPWJqoOdtA8pg7h0RXg8aUmP9emWgT7QLpGMGXNF7do9fw9nC0lGKoJuWiywR0ocENTSwP`;
 
 export default {
   name: 'Session',
@@ -50,7 +52,7 @@ export default {
     BeforeForm
   },
   created () {
-    // Load all students from spreadsheet
+        // Load all students from spreadsheet
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/Students!A2:D`
     axios.get(url)
     .then(response => {
@@ -60,6 +62,7 @@ export default {
       }
       this.students = studentArray
     })
+
     // Check from response sheet
     const url2 = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/Responses!B1:B?majorDimension=ROWS`
     axios.get(url2)
@@ -77,23 +80,38 @@ export default {
         nameArray.push(newArray[k])
       }
       this.existingStudents = nameArray
+      this.checkNameExist();
     })
     .catch(error => {
       console.log(error)
     })
   },
+  watch: {
+    studentName: function () {
+        this.$store.dispatch('setName', this.studentName)
+        this.$store.dispatch('setDate', this.sessionDate)
+        this.error = null
+        console.log('Name changed', store.state.name)
+        this.checkNameExist();
+        console.log('Name Exist', store.state.nameExist)
+    },
+    sessionDate: function () {
+      this.error = null
+    }
+  },
   data() {
     return {
       title: 'Session Page',
       sessionDate: null,
-      studentName: 'studentName',
+      studentName: null,
       showStudentSelect: true,
       showQuestions: false,
       showBefore: false,
       showAfter: false,
       students: [],
       response: [],
-      existingStudents: []
+      existingStudents: [],
+      error: null
     }
   },
   methods: {
@@ -102,24 +120,49 @@ export default {
       for (var name in this.existingStudents) {
         if (store.state.name === this.existingStudents[name]) {
           console.log('exists', store.state.name)
+          console.log('At position', 1 + (name* 8))
+          this.$store.dispatch('setCellPos', 1+(name*8))
+          console.log('Stored at', store.state.pos)
+          this.$store.dispatch('setNameExist', true)
+          console.log('Name exists in watcher', store.state.nameExist)
+          return true
+        } else {
+          this.$store.dispatch('setNameExist', false)
         }
       }
     },
-      beforeForm () {
-        this.checkNameExist()
+    beforeForm () {
+      if(this.validInput()) {
         this.showStudentSelect = false
         this.showBefore = true
         this.showQuestions = true
-        this.$store.dispatch('setName', this.studentName)
-        this.$store.dispatch('setDate', this.sessionDate)
-      },
-      afterForm () {
+        this.error = null
+      }
+    },
+    afterForm () {
+      if(this.validInput()) {
         this.showStudentSelect = false
         this.showAfter = true
         this.showQuestions = true
-        this.$store.dispatch('setName', this.studentName)
-        this.$store.dispatch('setDate', this.sessionDate)
+        this.error = null
       }
+    },
+    validInput () {
+      if (this.sessionDate) {
+        if (this.studentName) {
+          return true
+        } else {
+          this.error = 'Please Select Student'
+        }
+      } else {
+        this.error = 'Please Select Session Date'
+      }
+    }
   }
 };
 </script>
+<style scoped>
+h5 {
+  color: red
+}
+</style>

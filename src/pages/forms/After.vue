@@ -5,6 +5,9 @@
     <br>
     <f7-block id="page">
     <f7-block>
+      <h2>Hi, {{responseObj.name}}</h2>
+    </f7-block>
+    <f7-block>
       <h1>{{questions[counter]}}</h1>
     </f7-block>
     <f7-row>
@@ -19,12 +22,13 @@
     type="range"
     min="0"
     :max="max"
-    :value="node.sum"
+    :value="rangeValue"
     v-on:input="onChg($event)">
   
-<f7-row>{{node.sum}}</f7-row>
+<f7-row>{{rangeValue}}</f7-row>
 <f7-row>
-    <f7-button @click="previous" >Previous</f7-button>
+    <f7-button @click="reset" >reset</f7-button>
+    <f7-button v-show="showDone" @click="done">Done!</f7-button>
     <f7-button @click="next" >Next</f7-button>
 </f7-row>
     </f7-block>
@@ -33,6 +37,7 @@
 
 <script>
 import store from '@/store/store'
+import axios from 'axios'
 
 export default {
   name: 'after',
@@ -44,51 +49,132 @@ export default {
         sum: 2,
       },
       counter:0,
+      rangeValue: 2,
+      showDone: false,
       questions: ['How was being in the group today with other people?','Are you feeling the same or different?'],
       responseObj: {
-        name: store.state.name,
-        date: Date.now,
-        q1: null,
-        q2: null,
-        q3: null,
-        q4: null
+        name: null,
+        answers: []
       }
     };
   },
+  created () {
+    this.responseObj.name = store.state.name
+  },
   methods:{
-    next (){
-      if(this.counter<1){
-      this.counter++;
-      console.log(responseObj)
+    done () {
+      //submit the response
+      progress.show("Connecting to Google Sheets...");
+      setTimeout(function () {
+        progress.update("Saving Responses");
+      }, 1500)
+      console.log(this.responseObj)
+      if(store.state.nameExist) {
+      const customRange = `Responses!B${store.state.pos+6}`
+      const data = {
+        "range": customRange,
+        "majorDimension": "COLUMNS",
+        "values": [
+          [this.responseObj.answers[0], this.responseObj.answers[1]]
+        ],
+      }
+      console.log(data)
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/${customRange}?valueInputOption=RAW`
+      axios.put(url, data)
+      .then(response => {
+        setTimeout(function () {
+            progress.hide();
+        }, 2000);
+          navigator.notification.alert(
+            "Responses Saved",  // message
+            null,         // callback
+            'Success',            // title
+            'OK'                  // buttonName
+        )
+      })
+      .catch(error => {
+        navigator.notification.alert(
+          error,  // message
+          null,         // callback
+          'Error',            // title
+          'OK'                  // buttonName
+        )
+      })
+      } else {
+        const customRange = `Responses!B1`
+        const data = {
+        "range": customRange,
+        "majorDimension": "COLUMNS",
+        "values": [
+          [this.responseObj.answers[0], this.responseObj.answers[1]]
+        ],
+      }
+      console.log(data)
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.state.sheetId}/values/${customRange}:append?valueInputOption=RAW`
+      axios.post(url, data)
+      .then(response => {
+        setTimeout(function () {
+            progress.hide();
+        }, 2000);
+          navigator.notification.alert(
+            "Responses Saved",  // message
+            null,         // callback
+            'Success',            // title
+            'OK'                  // buttonName
+        )
+        console.log(response)
+      })
+      .catch(error => {
+        navigator.notification.alert(
+          error,  // message
+          null,         // callback
+          'Error',            // title
+          'OK'                  // buttonName
+        )
+      })
       }
     },
-    previous (){
-      if(this.counter>0){
-      this.counter--;
+    next (){
+      if(this.counter<2){
+        this.responseObj.answers[this.counter] = this.rangeValue
+      this.counter++;
+      if(this.counter>1) {
+        this.showDone = true
+        this.questions.push("You're Done")
+      } else {
+        this.showDone = false
       }
+      }
+    },
+    reset (){
+      this.counter=0;
+      this.showDone=false;
     },
     happy (){
-      this.node.sum=0;
+      this.rangeValue=0;
     },
     excited (){
-      this.node.sum=1;
+      this.rangeValue=1;
     },
     amused (){
-      this.node.sum=2;
+      this.rangeValue=2;
     },
     indifferent (){
-      this.node.sum=3;
+      this.rangeValue=3;
     },
     angry (){
-      this.node.sum=4;
+      this.rangeValue=4;
     },
     onChg (e) {
-      this.node.sum = e.target.value;
+      this.rangeValue = e.target.value;
     }
   }
 };
 </script>
 <style scoped>
+h2 {
+  font-size: 30px;
+}
 .page{
   vertical-align: center;
 }

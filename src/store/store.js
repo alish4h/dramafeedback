@@ -14,7 +14,9 @@ export default new Vuex.Store({
     refreshToken: null,
     sheetId: '13MhaHGGizfcp8BAYj8wUCcqJ3Wt9xkprj9Im8necf8k',
     name: null,
-    date: null
+    date: null,
+    pos: null,
+    nameExist: false
   },
   mutations: {
     setToken (state, token) {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     },
     setDate(state, date) {
       state.date = date
+    },
+    setCellPos(state, pos) {
+      state.pos = pos
+    },
+    setNameExist(state, nameExist) {
+      state.nameExist = nameExist
     }
   },
   actions: {
@@ -42,6 +50,12 @@ export default new Vuex.Store({
     },
     setDate({commit}, date) {
       commit('setDate', date)
+    },
+    setCellPos({commit}, pos) {
+      commit('setCellPos', pos)
+    },
+    setNameExist({commit}, nameExist) {
+      commit('setNameExist', nameExist)
     }
   }
 })

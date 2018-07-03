@@ -39,6 +39,7 @@
     </f7-list-item>
     <br>
     <f7-button fill-ios='true' big-ios='true' @click="addStudent">Add Student</f7-button>
+    <p>{{token}}</p>
     </f7-list>
     </f7-block>
   </f7-page>
@@ -47,7 +48,7 @@
 <script>
 import axios from 'axios'
 import store from '@/store/store'
-axios.defaults.headers.common['Authorization'] = `Bearer ya29.Glu6BaaFgtO2b9Oa9vOzgVDcBIIL1BDshOWU54qFaYpRCTg71xZEUE7KtW0fII05o6Czdwk4cthDNfb_WdLcziw8qF8Y3kg6El9TFHw4G0FIj1NX-mQyabyiHa77`;
+// axios.defaults.headers.common['Authorization'] = `Bearer ya29.GlvtBd1oFR1vy2XO-YAJYHZ5owcRMlNNec9wbk_4re93__TO7Q8jSrX_r5khN0Wn94WvRpCmHaam_uHKmj1gk5akPL-BInebi74svP8bf47DxjV0XGDIeYbYuwam`;
 
 export default {
   name: 'Students',
@@ -66,7 +67,7 @@ export default {
         startdate: null
       },
       students: [],
-      token: null,
+      token: store.state.token,
       result: {},
       spreadsheetId: store.state.sheetId
     };
@@ -74,21 +75,40 @@ export default {
   methods: {
     addStudent () {
       // add a student to 'students' sheet
-      alert('Adding student')
+      progress.show("Connecting to Google Sheets...");
+      setTimeout(function () {
+            progress.update("Adding Student...");
+      }, 1500);
+
       const data = {
         "range": "Students!A2:D",
         "majorDimension": "ROWS",
         "values": [
-          [this.student.name, this.student.age, this.student.gender, this.student.location, this.student.startdate]
+          [this.student.name, this.student.age, this.student.gender, this.student.school, this.student.startdate]
         ],
       }
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/Students!A2:D:append?valueInputOption=RAW`
       axios.post(url, data)
-      .then(response => {
-        alert(error)
+      .then((response) => {
+        setTimeout(function () {
+            progress.hide();
+        }, 2000);
+          navigator.notification.alert(
+            "Student Added",  // message
+            null,         // callback
+            'Success',            // title
+            'OK'                  // buttonName
+        )
+        console.log(response.data)
       })
       .catch(error => {
-        alert(error)
+            navigator.notification.alert(
+            error,  // message
+            null,         // callback
+            'Error',            // title
+            'OK'                  // buttonName
+        )
+        console.log(error)
       })
     }
   }

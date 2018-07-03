@@ -60,6 +60,14 @@ module.exports = [
     "clobbers": [
       "chrome.storage"
     ]
+  },
+  {
+    "id": "cordova-plugin-progress.Progress",
+    "file": "plugins/cordova-plugin-progress/www/progress.js",
+    "pluginId": "cordova-plugin-progress",
+    "clobbers": [
+      "progress"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -70,7 +78,8 @@ module.exports.metadata =
   "es6-promise-plugin": "4.2.2",
   "nl-afas-cordova-plugin-securelocalstorage": "0.1.18",
   "cordova-plugin-chrome-apps-common": "1.0.7",
-  "cordova-plugin-chrome-apps-storage": "1.0.4"
+  "cordova-plugin-chrome-apps-storage": "1.0.4",
+  "cordova-plugin-progress": "0.3.0"
 };
 // BOTTOM OF METADATA
 });
